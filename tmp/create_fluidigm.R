@@ -33,11 +33,10 @@ meta2 <- read.table("tmp/Fluidigm_config_NG.txt", as.is=TRUE, header=TRUE, sep='
 meta <- merge(meta1, meta2, by="sample_sequencing_id")[,c(1:2, 4:7, 10:11)]
 rownames(meta) <- meta[,1]
 
+info <- read.csv("tmp/sample_info.csv", as.is=TRUE)
 clusters <- read.table("tmp/clusters.txt", as.is=TRUE)
 
 library(SummarizedExperiment)
 
 fluidigm <- SummarizedExperiment(assay=list(counts=gene_counts, fpkm=gene_fpkm),
                            colData=DataFrame(t(qc)), metadata=list(metadata=meta, clusters=clusters))
-
-save(fluidigm, file="data/fluidgm.rda")
