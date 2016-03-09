@@ -4,12 +4,11 @@ Version: 0.0.1
 Date: 2016-02-29
 Authors@R: c(person("Davide", "Risso", email = "risso.davide@gmail.com",
                   role = c("aut", "cre", "cph")),
-             person("Michael", "Cole", role="aut"),
-             person("Allon", "Wagner", role="aut"))
-Author: Davide Risso [aut, cre, cph], Michael Cole [aut], Allon Wagner [aut]
+             person("Michael", "Cole", role="aut"))
+Author: Davide Risso [aut, cre, cph], Michael Cole [aut]
 Maintainer: Davide Risso <risso.davide@gmail.com>
 Description: Gene-level read counts of three public scRNA-seq datasets. See vignette for details.
-License: GPL-3
+License: CC0
 NeedsCompilation: no
 Packaged: 2016-03-01 07:27:26 UTC; davide
 Depends: R (>= 2.10)

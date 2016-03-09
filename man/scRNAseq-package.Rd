@@ -4,6 +4,7 @@
 \alias{fluidigm}
 \alias{th2}
 \alias{shalek_dc}
+\alias{allen}
 
 \docType{package}
 \title{
@@ -23,6 +24,8 @@ The dataset \code{th2} contains 96 T helper cells from Mahata et al. (2014).
 
 The dataset \code{shalek_dc} contains 2397 dendritic cells from Shalek et al. (2014).
 
+The dataset \code{allen} contains 379 cells from the mouse visual cortex. This is a subset of the data published in Tasic et al. (2016).
+
 See the package vignette for details on the pre-processing of the data.
 
 }
@@ -31,6 +34,7 @@ See the package vignette for details on the pre-processing of the data.
 
 Maintainer: \packageMaintainer{scRNAseq}
 }
+
 \references{
 
 Pollen, Nowakowski, Shuga, Wang, Leyrat, Lui, Li, Szpankowski, Fowler, Chen, Ramalingam, Sun, Thu, Norris, Lebofsky, Toppani, Kemp II, Wong, Clerkson, Jones, Wu, Knutsson, Alvarado, Wang, Weaver, May, Jones, Unger, Kriegstein, West. Low-coverage single-cell mRNA sequencing reveals cellular heterogeneity and activated signaling pathways in developing cerebral cortex. Nature Biotechnology, 32, 1053-1058 (2014).
@@ -39,4 +43,5 @@ Mahata, Zhang, Kolodziejczyk, Proserpio, Haim-Vilmovsky, Taylor, Hebenstreit, Di
 
 Shalek, Satija, Shuga, Trombetta, Gennert, Lu, Chen, Gertner, Gaublomme, Yosef, Schwartz, Fowler, Weaver, Wang, Wang, Ding, Raychowdhury, Friedman, Hacohen, Park, May, Regev. Single-cell RNA-seq reveals dynamic paracrine control of cellular variation. Nature, 510, 363-369 (2014).
 
+Tasic, Menon, Nguyen, Kim, Jarsky, Yao, Levi, Gray, Sorensen, Dolbeare, Bertagnolli, Goldy, Shapovalova, Parry, Lee, Smith, Bernard, Madisen, Sunkin, Hawrylycz, Koch, Zeng. Adult mouse cortical cell taxonomy revealed by single cell transcriptomics. Nature Neuroscience, 19, 335–346 (2016).
 }
