@@ -1,6 +1,6 @@
 Package: scRNAseq
-Title: A collection of public single-cell RNA-seq datasets
-Version: 0.0.3
+Title: A Collection of Public Single-Cell RNA-Seq Datasets
+Version: 0.0.4
 Date: 2016-02-29
 Authors@R: c(person("Davide", "Risso", email = "risso.davide@gmail.com",
                   role = c("aut", "cre", "cph")),
@@ -11,4 +11,7 @@ Description: Gene-level read counts of three public scRNA-seq datasets. See vign
 License: CC0
 NeedsCompilation: no
 Packaged: 2016-03-01 07:27:26 UTC; davide
-Depends: R (>= 2.10), SummarizedExperiment
+Depends: R (>= 3.0), SummarizedExperiment
+Suggests: BiocStyle, knitr, rmarkdown
+VignetteBuilder: knitr
+Encoding: UTF-8
