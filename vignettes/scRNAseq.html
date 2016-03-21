@@ -50,7 +50,7 @@ document.addEventListener("DOMContentLoaded", function() {
 <div id="header">
 <h1 class="title">Overview of the scRNAseq dataset collection</h1>
 <h4 class="author"><em>Davide Risso</em></h4>
-<h4 class="date"><em>Created: March 18, 2016; Compiled: 2016-03-18</em></h4>
+<h4 class="date"><em>Created: March 18, 2016; Compiled: 2016-03-20</em></h4>
 </div>
 
 <h1>Contents</h1>
@@ -85,9 +85,11 @@ document.addEventListener("DOMContentLoaded", function() {
 </div>
 <div id="pre-processing-and-summary" class="section level1">
 <h1><span class="header-section-number">2</span> Pre-processing and summary</h1>
-<p>SRA files were downloaded from the Sequence Read Archive and the SRA Toolkit (v. xx) was used to transform them to FASTQ. FASTQ files were downloaded from EMBL-EBI ArrayExpress.</p>
-<p>Reads were aligned with TopHat (v. xx) <span class="citation">(Trapnell, Pachter, and Salzberg <a href="#ref-trapnell2009tophat">2009</a>)</span> to the appropriate reference genome (GRCh38 for human samples, GRCm38 for mouse). RefSeq mouse gene annotation (GCF_000001635.23_GRCm38.p3) was downloaded from NCBI on Dec. 28, 2014. RefSeq human gene annotation (GCF_000001405.26) was downloaded from NCBI on Feb. 23, 2015.</p>
-<p>featureCounts (v. xx) <span class="citation">(Liao, Smyth, and Shi <a href="#ref-liao2013featurecounts">2013</a>)</span> was used to compute gene-level read counts and Cufflinks (v. xx) <span class="citation">(Trapnell et al. <a href="#ref-trapnell2010transcript">2010</a>)</span> was used to compute gene-leve FPKM’s.</p>
+<p>SRA files were downloaded from the Sequence Read Archive and the SRA Toolkit was used to transform them to FASTQ. FASTQ files were downloaded from EMBL-EBI ArrayExpress.</p>
+<p>Reads were aligned with TopHat (v. 2.0.11) <span class="citation">(Trapnell, Pachter, and Salzberg <a href="#ref-trapnell2009tophat">2009</a>)</span> to the appropriate reference genome (GRCh38 for human samples, GRCm38 for mouse). RefSeq mouse gene annotation (GCF_000001635.23_GRCm38.p3) was downloaded from NCBI on Dec. 28, 2014. RefSeq human gene annotation (GCF_000001405.28) was downloaded from NCBI on Jun. 22, 2015.</p>
+<p>featureCounts (v. 1.4.6-p3) <span class="citation">(Liao, Smyth, and Shi <a href="#ref-liao2013featurecounts">2013</a>)</span> was used to compute gene-level read counts and Cufflinks (v. 2.2.0) <span class="citation">(Trapnell et al. <a href="#ref-trapnell2010transcript">2010</a>)</span> was used to compute gene-leve FPKM’s.</p>
+<p>FastQC (v. 0.10.1) (<a href="http://www.bioinformatics.babraham.ac.uk/projects/fastqc/" class="uri">http://www.bioinformatics.babraham.ac.uk/projects/fastqc/</a>) and Picard (v. 1.128) (<a href="http://broadinstitute.github.io/picard" class="uri">http://broadinstitute.github.io/picard</a>) were used to compute sample quality control (QC) metrics. (Picard’s scripts <code>CollectRnaSeqMetrics</code>, <code>CollectAlignmentSummaryMetrics</code> and <code>CollectInsertSizeMetrics</code>).</p>
+<p>Note that all the samples available in GEO and/or ArrayExpressed were included in the data object, including the samples that were excluded in the original publication because they did not pass QC.</p>
 </div>
 <div id="data-format-and-metadata" class="section level1">
 <h1><span class="header-section-number">3</span> Data format and metadata</h1>
@@ -139,7 +141,7 @@ fluidigm</code></pre>
 <pre><code>## 
 ## FALSE  TRUE 
 ##  9178 17084</code></pre>
-<p>In addition to the gene expression levels, the object contains some useful quality control (QC) information, as well as the available annotation of the samples. This information can be accessed through the <code>colData</code> accessor.</p>
+<p>In addition to the gene expression levels, the object contains some useful QC information, as well as the available annotation of the samples. This information can be accessed through the <code>colData</code> accessor.</p>
 <pre class="r"><code>colData(fluidigm)</code></pre>
 <pre><code>## DataFrame with 130 rows and 28 columns
 ##               NREADS  NALIGNED    RALIGN TOTAL_DUP    PRIMER INSERT_SZ
