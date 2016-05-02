@@ -14,11 +14,11 @@ The dataset _allen_ contains 379 cells from the mouse visual cortex. This is a s
 
 ## To install
 
-To install from Github, you need to have the large file storage installed (https://git-lfs.github.com/) to clone the repository and have the data download. Once you have a local copy of the repository on your system, run
+You can download the latest release [here](https://github.com/drisso/scRNAseq/releases). Once dowloaded, type in R
+```{r}
+install.packages("scRNAseq_0.0.8.tar.gz", repos=NULL)
 ```
-R CMD INSTALL <path/to/repository>
-```
-to install the package, where `<path/to/repository>` is the path to the folder where you cloned the repo.
+to install the package, where `scRNAseq_0.0.8.tar.gz` is the name of the file downloaded (note that the name could change reflecting the release of a new version of the package).
 
 ## References
 
