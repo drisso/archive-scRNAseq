@@ -20,6 +20,12 @@ install.packages("scRNAseq_0.0.8.tar.gz", repos=NULL)
 ```
 to install the package, where `scRNAseq_0.0.8.tar.gz` is the name of the file downloaded (note that the name could change reflecting the release of a new version of the package).
 
+Note that this package depends on the Bioconductor package `SummarizedExperiment`, which can be installed in R by typing
+```{r}
+source("https://bioconductor.org/biocLite.R")
+biocLite("SummarizedExperiment")
+```
+
 ## References
 
 Pollen, Nowakowski, Shuga, Wang, Leyrat, Lui, Li, Szpankowski, Fowler, Chen, Ramalingam, Sun, Thu, Norris, Lebofsky, Toppani, Kemp II, Wong, Clerkson, Jones, Wu, Knutsson, Alvarado, Wang, Weaver, May, Jones, Unger, Kriegstein, West. Low-coverage single-cell mRNA sequencing reveals cellular heterogeneity and activated signaling pathways in developing cerebral cortex. _Nature Biotechnology_, __32__, 1053-1058 (2014).
