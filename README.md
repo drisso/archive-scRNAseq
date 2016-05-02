@@ -12,6 +12,14 @@ The dataset _shalek_dc_ contains 2397 dendritic cells from Shalek et al. (2014) 
 
 The dataset _allen_ contains 379 cells from the mouse visual cortex. This is a subset of the data published in Tasic et al. (2016) (SRA: SRP061902).
 
+## To install
+
+To install from Github, you need to have the large file system installed (https://git-lfs.github.com/) to clone the repository and have the data download. Once you have a local copy of the repository on your system, run
+```
+R CMD INSTALL <path/to/repository>
+```
+to install the package, where `<path/to/repository>` is the path to the folder where you cloned the repo.
+
 ## References
 
 Pollen, Nowakowski, Shuga, Wang, Leyrat, Lui, Li, Szpankowski, Fowler, Chen, Ramalingam, Sun, Thu, Norris, Lebofsky, Toppani, Kemp II, Wong, Clerkson, Jones, Wu, Knutsson, Alvarado, Wang, Weaver, May, Jones, Unger, Kriegstein, West. Low-coverage single-cell mRNA sequencing reveals cellular heterogeneity and activated signaling pathways in developing cerebral cortex. _Nature Biotechnology_, __32__, 1053-1058 (2014).
