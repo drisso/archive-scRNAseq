@@ -14,7 +14,7 @@ The dataset _allen_ contains 379 cells from the mouse visual cortex. This is a s
 
 ## To install
 
-To install from Github, you need to have the large file system installed (https://git-lfs.github.com/) to clone the repository and have the data download. Once you have a local copy of the repository on your system, run
+To install from Github, you need to have the large file storage installed (https://git-lfs.github.com/) to clone the repository and have the data download. Once you have a local copy of the repository on your system, run
 ```
 R CMD INSTALL <path/to/repository>
 ```
