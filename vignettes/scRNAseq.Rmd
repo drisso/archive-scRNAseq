@@ -92,4 +92,17 @@ metadata(fluidigm)$which_qc
 
 In particular, in all datasets, the metadata list includes an element called `which_qc` that contains the names of the `colData` columns that relate to sample QC.
 
+# ERCC spike-ins
+
+The `th2` and `allen` datasets contain the expression of the ERCC spike-ins. Note that these are **included in the same matrices** as the endogenous genes, hence users must be caution to avoid when using the data, to avoid mistreat external spike-ins as endogenous genes. One may wish to split the datasets in two, e.g.:
+
+```{r}
+data(th2)
+ercc_idx <- grep("^ERCC-", rownames(th2))
+th2_endogenous <- th2[-ercc_idx,]
+th2_ercc <- th2[ercc_idx,]
+
+head(assay(th2_ercc)[,1:4])
+```
+
 # References
