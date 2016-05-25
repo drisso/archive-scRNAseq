@@ -84,6 +84,10 @@ all_info <- all_info[colnames(cufflinks_fpkm),]
 
 md <- all_info[,c("driver_1_s", "dissection_s", "Core.Type", "Primary.Type", "Secondary.Type", "Animal.ID", "passes_qc_checks_s")]
 
+stopifnot(all(rownames(md)==colnames(qc)))
+
+library(SummarizedExperiment)
+
 allen <- SummarizedExperiment(assays = list(tophat_counts = tophat_counts,
                                             cufflinks_fpkm = cufflinks_fpkm,
                                             rsem_counts = rsem_counts,
