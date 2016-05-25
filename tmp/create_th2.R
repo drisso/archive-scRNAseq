@@ -51,13 +51,19 @@ system("rm E-MTAB-2512.sdrf.txt")
 
 info <- apply(metadata[,c(1, 10)], 2, function(x) tapply(x, metadata[,31], unique))
 colnames(info) <- c("id", "single")
+info <- info[colnames(qc),]
 
-## from https://github.com/PMBio/scLVM/blob/master/data/Tcell/data_Tcells.Rdata
-load("tmp/data_Tcells.Rdata")
+system("wget https://github.com/PMBio/scLVM/raw/master/data/Tcell/data_Tcells.Rdata")
+load("data_Tcells.Rdata")
+system("rm data_Tcells.Rdata")
+
 idx <- as.numeric(sapply(sapply(strsplit(colnames(dataMouse), "_"), function(x) strsplit(x[2], ".", fixed=TRUE)), function(x) x[1]))
 Buettner_filter <- rep("PASS", 96)
-Buettner_filter[which(!(1:96 %in% idx))] <- "FAIL"
+Buettner_filter[which(!(sapply(sapply(strsplit(info[,"id"], " "), function(x) strsplit(x[2], ".", fixed=TRUE)), function(x) x[1]) %in% idx))] <- "FAIL"
 info <- cbind(info, Buettner_filter)
+
+stopifnot(all(rownames(info)==colnames(tophat_counts)))
+stopifnot(all(colnames(qc)==colnames(tophat_counts)))
 
 library(SummarizedExperiment)
 
