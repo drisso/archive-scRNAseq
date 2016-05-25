@@ -50,7 +50,7 @@ document.addEventListener("DOMContentLoaded", function() {
 <div id="header">
 <h1 class="title">Overview of the scRNAseq dataset collection</h1>
 <h4 class="author"><em>Davide Risso</em></h4>
-<h4 class="date"><em>Created: March 18, 2016; Compiled: 2016-05-24</em></h4>
+<h4 class="date"><em>Created: May 25, 2016; Compiled: 2016-05-25</em></h4>
 </div>
 
 <h1>Contents</h1>
@@ -270,7 +270,13 @@ th2_endogenous &lt;- th2[-ercc_idx,]
 th2_ercc &lt;- th2[ercc_idx,]
 
 head(assay(th2_ercc)[,1:4])</code></pre>
-<pre><code>##      ERR488983 ERR488967 ERR488989 ERR489021</code></pre>
+<pre><code>##            ERR488983 ERR488967 ERR488989 ERR489021
+## ERCC-00002      7775     14356      3868     15478
+## ERCC-00003         1        75         1      2114
+## ERCC-00004      1167      2468      1960      3914
+## ERCC-00009       237         4      1167      1318
+## ERCC-00012         0         0         0         0
+## ERCC-00013         0         0         0         0</code></pre>
 </div>
 <div id="references" class="section level1 unnumbered">
 <h1>References</h1>

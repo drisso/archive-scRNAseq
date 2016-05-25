@@ -1,7 +1,7 @@
 ---
 title: "Overview of the scRNAseq dataset collection"
 author: "Davide Risso"
-date: "Created: March 18, 2016; Compiled: `r Sys.Date()`"
+date: "Created: May 25, 2016; Compiled: `r Sys.Date()`"
 output:
   BiocStyle::html_document:
     toc: true
