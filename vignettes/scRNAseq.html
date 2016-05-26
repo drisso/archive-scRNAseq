@@ -82,7 +82,7 @@ document.addEventListener("DOMContentLoaded", function() {
 <p>This package contains a collection of four publicly available single-cell RNA-seq data. The data were downloaded from NCBI’s SRA or from EBI’s ArrayExpress (see below for Accession numbers)</p>
 <p>The dataset <code>fluidigm</code> contains 65 cells from <span class="citation">(Pollen et al. 2014)</span>, each sequenced at high and low coverage (SRA: SRP041736).</p>
 <p>The dataset <code>th2</code> contains 96 T helper cells from <span class="citation">(Mahata et al. 2014)</span> (ArrayExpress: E-MTAB-2512).</p>
-<p>The dataset <code>shalek_dc</code> contains 2397 dendritic cells from <span class="citation">(Shalek et al. 2014)</span> (SRA: SRP027537).</p>
+<p>The dataset <code>shalek_dc</code> contains 2397 dendritic cells from <span class="citation">(Shalek et al. 2014)</span> (SRA: SRP027537). (Note that our preprocessing pipeline failed to process 28 out of the original 2425 samples).</p>
 <p>The dataset <code>allen</code> contains 379 cells from the mouse visual cortex. This is a subset of the data published in <span class="citation">(Tasic et al. 2016)</span> (SRA: SRP061902).</p>
 </div>
 <div id="pre-processing-and-summary" class="section level1">
@@ -99,11 +99,11 @@ document.addEventListener("DOMContentLoaded", function() {
 <pre class="r"><code>library(scRNAseq)
 data(fluidigm)
 fluidigm</code></pre>
-<pre><code>## class: SummarizedExperiment0 
-## dim: 26262 130 
+<pre><code>## class: SummarizedExperiment 
+## dim: 26255 130 
 ## metadata(3): sample_info clusters which_qc
 ## assays(4): tophat_counts cufflinks_fpkm rsem_counts rsem_tpm
-## rownames(26262): A1BG A1BG-AS1 ... ZZEF1 ZZZ3
+## rownames(26255): A1BG A1BG-AS1 ... ZZEF1 ZZZ3
 ## rowData names(0):
 ## colnames(130): SRR1275356 SRR1274090 ... SRR1275366 SRR1275261
 ## colData names(28): NREADS NALIGNED ... Cluster1 Cluster2</code></pre>
@@ -132,11 +132,11 @@ fluidigm</code></pre>
 <pre><code>## NULL</code></pre>
 <p>Note that the all the protein-coding genes are included in the expression matrix, even if they are not expressed in these samples, hence filtering of the non-expressed genes should be performed before any statistical analysis.</p>
 <pre class="r"><code>dim(fluidigm)</code></pre>
-<pre><code>## [1] 26262   130</code></pre>
+<pre><code>## [1] 26255   130</code></pre>
 <pre class="r"><code>table(rowSums(assay(fluidigm))&gt;0)</code></pre>
 <pre><code>## 
 ## FALSE  TRUE 
-##  9178 17084</code></pre>
+##  9170 17085</code></pre>
 <p>In addition to the gene expression levels, the object contains some useful QC information, as well as the available annotation of the samples. This information can be accessed through the <code>colData</code> accessor.</p>
 <pre class="r"><code>colData(fluidigm)</code></pre>
 <pre><code>## DataFrame with 130 rows and 28 columns

@@ -23,7 +23,7 @@ The dataset `fluidigm` contains 65 cells from [@pollen2014low], each sequenced a
 
 The dataset `th2` contains 96 T helper cells from [@mahata2014single] (ArrayExpress: E-MTAB-2512).
 
-The dataset `shalek_dc` contains 2397 dendritic cells from [@shalek2014single] (SRA: SRP027537).
+The dataset `shalek_dc` contains 2397 dendritic cells from [@shalek2014single] (SRA: SRP027537). (Note that our preprocessing pipeline failed to process 28 out of the original 2425 samples).
 
 The dataset `allen` contains 379 cells from the mouse visual cortex. This is a subset of the data published in [@tasic2016adult] (SRA: SRP061902).
 
