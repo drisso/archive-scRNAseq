@@ -17,13 +17,11 @@ BiocStyle::markdown()
 
 # Raw data availability and accession codes
 
-This package contains a collection of four publicly available single-cell RNA-seq data. The data were downloaded from NCBI's SRA or from EBI's ArrayExpress (see below for Accession numbers)
+This package contains a collection of three publicly available single-cell RNA-seq datasets. The data were downloaded from NCBI's SRA or from EBI's ArrayExpress (see below for Accession numbers)
 
 The dataset `fluidigm` contains 65 cells from [@pollen2014low], each sequenced at high and low coverage (SRA: SRP041736).
 
 The dataset `th2` contains 96 T helper cells from [@mahata2014single] (ArrayExpress: E-MTAB-2512).
-
-The dataset `shalek_dc` contains 2397 dendritic cells from [@shalek2014single] (SRA: SRP027537). (Note that our preprocessing pipeline failed to process 28 out of the original 2425 samples).
 
 The dataset `allen` contains 379 cells from the mouse visual cortex. This is a subset of the data published in [@tasic2016adult] (SRA: SRP061902).
 
@@ -34,6 +32,8 @@ SRA files were downloaded from the Sequence Read Archive and the SRA Toolkit was
 Reads were aligned with TopHat (v. 2.0.11) [@trapnell2009tophat] to the appropriate reference genome (GRCh38 for human samples, GRCm38 for mouse). RefSeq mouse gene annotation (GCF_000001635.23_GRCm38.p3) was downloaded from NCBI on Dec. 28, 2014. RefSeq human gene annotation (GCF_000001405.28) was downloaded from NCBI on Jun. 22, 2015.
 
 featureCounts (v. 1.4.6-p3) [@liao2013featurecounts] was used to compute gene-level read counts and Cufflinks (v. 2.2.0) [@trapnell2010transcript] was used to compute gene-leve FPKM's.
+
+In parallel, reads were mapped to the transcriptome using RSEM (v. 1.2.19) [@li2011rsem] to compute read counts and TPM's.
 
 FastQC (v. 0.10.1) (http://www.bioinformatics.babraham.ac.uk/projects/fastqc/) and Picard (v. 1.128) (http://broadinstitute.github.io/picard) were used to compute sample quality control (QC) metrics. (Picard's scripts `CollectRnaSeqMetrics`, `CollectAlignmentSummaryMetrics` and `CollectInsertSizeMetrics`).
 
@@ -81,7 +81,7 @@ In addition to the gene expression levels, the object contains some useful QC in
 colData(fluidigm)
 ```
 
-The first columns are related to sample quality, while other fields include information on the samples, provided by the original authors in their GEO/SRA submission.
+The first columns are related to sample quality, while other fields include information on the samples, provided by the original authors in their GEO/SRA submission and/or as Supplementary files in the pubblication.
 
 Finally, the object contains a list of `metadata` that provide additional information on the experiment.
 
@@ -94,7 +94,7 @@ In particular, in all datasets, the metadata list includes an element called `wh
 
 # ERCC spike-ins
 
-The `th2` and `allen` datasets contain the expression of the ERCC spike-ins. Note that these are **included in the same matrices** as the endogenous genes, hence users must be caution to avoid when using the data, to avoid mistreat external spike-ins as endogenous genes. One may wish to split the datasets in two, e.g.:
+The `th2` and `allen` datasets contain the expression of the ERCC spike-ins. Note that these are **included in the same matrices** as the endogenous genes, hence users must use caution to avoid when using the data, to avoid mistreat external spike-ins as endogenous genes. One may wish to split the datasets in two, e.g.:
 
 ```{r}
 data(th2)

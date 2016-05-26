@@ -50,7 +50,7 @@ document.addEventListener("DOMContentLoaded", function() {
 <div id="header">
 <h1 class="title">Overview of the scRNAseq dataset collection</h1>
 <h4 class="author"><em>Davide Risso</em></h4>
-<h4 class="date"><em>Created: May 25, 2016; Compiled: 2016-05-25</em></h4>
+<h4 class="date"><em>Created: May 25, 2016; Compiled: 2016-05-26</em></h4>
 </div>
 
 <h1>Contents</h1>
@@ -79,10 +79,9 @@ document.addEventListener("DOMContentLoaded", function() {
 </script>
 <div id="raw-data-availability-and-accession-codes" class="section level1">
 <h1><span class="header-section-number">1</span> Raw data availability and accession codes</h1>
-<p>This package contains a collection of four publicly available single-cell RNA-seq data. The data were downloaded from NCBI’s SRA or from EBI’s ArrayExpress (see below for Accession numbers)</p>
+<p>This package contains a collection of three publicly available single-cell RNA-seq datasets. The data were downloaded from NCBI’s SRA or from EBI’s ArrayExpress (see below for Accession numbers)</p>
 <p>The dataset <code>fluidigm</code> contains 65 cells from <span class="citation">(Pollen et al. 2014)</span>, each sequenced at high and low coverage (SRA: SRP041736).</p>
 <p>The dataset <code>th2</code> contains 96 T helper cells from <span class="citation">(Mahata et al. 2014)</span> (ArrayExpress: E-MTAB-2512).</p>
-<p>The dataset <code>shalek_dc</code> contains 2397 dendritic cells from <span class="citation">(Shalek et al. 2014)</span> (SRA: SRP027537). (Note that our preprocessing pipeline failed to process 28 out of the original 2425 samples).</p>
 <p>The dataset <code>allen</code> contains 379 cells from the mouse visual cortex. This is a subset of the data published in <span class="citation">(Tasic et al. 2016)</span> (SRA: SRP061902).</p>
 </div>
 <div id="pre-processing-and-summary" class="section level1">
@@ -90,6 +89,7 @@ document.addEventListener("DOMContentLoaded", function() {
 <p>SRA files were downloaded from the Sequence Read Archive and the SRA Toolkit was used to transform them to FASTQ. FASTQ files were downloaded from EMBL-EBI ArrayExpress.</p>
 <p>Reads were aligned with TopHat (v. 2.0.11) <span class="citation">(Trapnell, Pachter, and Salzberg 2009)</span> to the appropriate reference genome (GRCh38 for human samples, GRCm38 for mouse). RefSeq mouse gene annotation (GCF_000001635.23_GRCm38.p3) was downloaded from NCBI on Dec. 28, 2014. RefSeq human gene annotation (GCF_000001405.28) was downloaded from NCBI on Jun. 22, 2015.</p>
 <p>featureCounts (v. 1.4.6-p3) <span class="citation">(Liao, Smyth, and Shi 2013)</span> was used to compute gene-level read counts and Cufflinks (v. 2.2.0) <span class="citation">(Trapnell et al. 2010)</span> was used to compute gene-leve FPKM’s.</p>
+<p>In parallel, reads were mapped to the transcriptome using RSEM (v. 1.2.19) <span class="citation">(B. Li and Dewey 2011)</span> to compute read counts and TPM’s.</p>
 <p>FastQC (v. 0.10.1) (<a href="http://www.bioinformatics.babraham.ac.uk/projects/fastqc/" class="uri">http://www.bioinformatics.babraham.ac.uk/projects/fastqc/</a>) and Picard (v. 1.128) (<a href="http://broadinstitute.github.io/picard" class="uri">http://broadinstitute.github.io/picard</a>) were used to compute sample quality control (QC) metrics. (Picard’s scripts <code>CollectRnaSeqMetrics</code>, <code>CollectAlignmentSummaryMetrics</code> and <code>CollectInsertSizeMetrics</code>).</p>
 <p>Note that all the samples available in GEO and/or ArrayExpressed were included in the data object, including the samples that were excluded in the original publication because they did not pass QC.</p>
 </div>
@@ -244,7 +244,7 @@ fluidigm</code></pre>
 ## SRR1275285          High      Iva       IV
 ## SRR1275366          High       NA      III
 ## SRR1275261          High       II       II</code></pre>
-<p>The first columns are related to sample quality, while other fields include information on the samples, provided by the original authors in their GEO/SRA submission.</p>
+<p>The first columns are related to sample quality, while other fields include information on the samples, provided by the original authors in their GEO/SRA submission and/or as Supplementary files in the pubblication.</p>
 <p>Finally, the object contains a list of <code>metadata</code> that provide additional information on the experiment.</p>
 <pre class="r"><code>names(metadata(fluidigm))</code></pre>
 <pre><code>## [1] &quot;sample_info&quot; &quot;clusters&quot;    &quot;which_qc&quot;</code></pre>
@@ -263,7 +263,7 @@ fluidigm</code></pre>
 </div>
 <div id="ercc-spike-ins" class="section level1">
 <h1><span class="header-section-number">4</span> ERCC spike-ins</h1>
-<p>The <code>th2</code> and <code>allen</code> datasets contain the expression of the ERCC spike-ins. Note that these are <strong>included in the same matrices</strong> as the endogenous genes, hence users must be caution to avoid when using the data, to avoid mistreat external spike-ins as endogenous genes. One may wish to split the datasets in two, e.g.:</p>
+<p>The <code>th2</code> and <code>allen</code> datasets contain the expression of the ERCC spike-ins. Note that these are <strong>included in the same matrices</strong> as the endogenous genes, hence users must use caution to avoid when using the data, to avoid mistreat external spike-ins as endogenous genes. One may wish to split the datasets in two, e.g.:</p>
 <pre class="r"><code>data(th2)
 ercc_idx &lt;- grep(&quot;^ERCC-&quot;, rownames(th2))
 th2_endogenous &lt;- th2[-ercc_idx,]
@@ -281,6 +281,9 @@ head(assay(th2_ercc)[,1:4])</code></pre>
 <div id="references" class="section level1 unnumbered">
 <h1>References</h1>
 <div id="refs" class="references">
+<div id="ref-li2011rsem">
+<p>Li, B, and CN Dewey. 2011. “RSEM: Accurate Transcript Quantification from RNA-Seq Data with or Without a Reference Genome.” <em>BMC Bioinformatics</em> 12 (1): 1.</p>
+</div>
 <div id="ref-liao2013featurecounts">
 <p>Liao, Y, GK Smyth, and W Shi. 2013. “featureCounts: An Efficient General Purpose Program for Assigning Sequence Reads to Genomic Features.” <em>Bioinformatics</em>, btt656.</p>
 </div>
@@ -289,9 +292,6 @@ head(assay(th2_ercc)[,1:4])</code></pre>
 </div>
 <div id="ref-pollen2014low">
 <p>Pollen, AA, TJ Nowakowski, J Shuga, X Wang, AA Leyrat, JH Lui, N Li, et al. 2014. “Low-Coverage Single-Cell mRNA Sequencing Reveals Cellular Heterogeneity and Activated Signaling Pathways in Developing Cerebral Cortex.” <em>Nature Biotechnology</em> 32 (10): 1053–8.</p>
-</div>
-<div id="ref-shalek2014single">
-<p>Shalek, AK, R Satija, J Shuga, JJ Trombetta, D Gennert, D Lu, P Chen, et al. 2014. “Single-Cell RNA-seq Reveals Dynamic Paracrine Control of Cellular Variation.” <em>Nature</em> 510: 363–69.</p>
 </div>
 <div id="ref-tasic2016adult">
 <p>Tasic, B, V Menon, TN Nguyen, TK Kim, T Jarsky, Z Yao, B Levi, et al. 2016. “Adult Mouse Cortical Cell Taxonomy Revealed by Single Cell Transcriptomics.” <em>Nature Neuroscience</em> 19: 335–46.</p>

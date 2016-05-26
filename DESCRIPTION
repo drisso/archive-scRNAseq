@@ -10,7 +10,6 @@ Maintainer: Davide Risso <risso.davide@gmail.com>
 Description: Gene-level read counts of three public scRNA-seq datasets. See vignette for details.
 License: CC0
 NeedsCompilation: no
-Packaged: 2016-03-01 07:27:26 UTC; davide
 Depends: R (>= 3.3), SummarizedExperiment
 Suggests: BiocStyle, knitr, rmarkdown
 VignetteBuilder: knitr
