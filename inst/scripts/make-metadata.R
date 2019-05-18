@@ -21,17 +21,16 @@ all.datasets[["zeisel-brain"]] <- data.frame(
         "expression_spikes_17-Aug-2014.txt", sep=";"),
     Species="Mus musculus",
     TaxonomyId="10090",
-    Coordinate_1_based=FALSE,
+    Coordinate_1_based=TRUE,
     DataProvider="Sten Linnarsson",
     Maintainer="Aaron Lun <infinite.monkeys.with.keyboards@gmail.com>",
     RDataClass="character",
-    DispatchClass="FilePath",
+    DispatchClass="Rds",
     stringsAsFactors = FALSE
 )
-
 
 #########################################
 # Combining #
 #########################################
 
-write.csv(file="metadata.csv", do.call(rbind, all.datasets), row.names=FALSE)
+write.csv(file="../extdata/metadata.csv", do.call(rbind, all.datasets), row.names=FALSE)
