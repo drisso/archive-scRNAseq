@@ -23,7 +23,7 @@ After sequencing, expression was quantified by counting the number of UMIs mappe
 
 # Downloading the data
 
-Counts for all endogenous genes, mitochondrial genes and spike-in transcripts are available from http://linnarssonlab.org/cortex.
+Counts for endogenous genes, mitochondrial genes, repeats and spike-in transcripts are available from http://linnarssonlab.org/cortex.
 We download and cache them using the `r Biocpkg("BiocFileCache")` package.
 
 ```{r}
@@ -33,6 +33,8 @@ base.url <- file.path("https://storage.googleapis.com",
     "linnarsson-lab-www-blobs/blobs/cortex")
 mRNA.path <- bfcrpath(bfc, file.path(base.url, 
     "expression_mRNA_17-Aug-2014.txt"))
+rep.path <- bfcrpath(bfc, file.path(base.url, 
+    "expression_rep_17-Aug-2014.txt"))
 mito.path <- bfcrpath(bfc, file.path(base.url, 
     "expression_mito_17-Aug-2014.txt"))
 spike.path <- bfcrpath(bfc, file.path(base.url, 
@@ -77,6 +79,7 @@ Using this function, we read in the counts for the endogenous genes, ERCC spike-
 
 ```{r}
 endo.data <- readFormat(mRNA.path)
+rep.data <- readFormat(rep.path)
 spike.data <- readFormat(spike.path)
 mito.data <- readFormat(mito.path)
 ```
@@ -93,24 +96,27 @@ mito.data <- mito.data[,m]
 ```{r, echo=FALSE}
 # Should all be the same.
 stopifnot(identical(colData(endo.data), colData(spike.data))) 
+stopifnot(identical(colData(endo.data), colData(rep.data)))
 stopifnot(identical(colData(endo.data), colData(mito.data)))
 ```
 
 We combine all components into a single `SingleCellExperiment` object.
 
 ```{r}
-sce <- rbind(endo.data, mito.data, spike.data)
-rowData(sce)$featureType <- rep(c("endogenous", "mito", "ERCC"),
-    c(nrow(endo.data), nrow(mito.data), nrow(spike.data)))
+sce <- rbind(endo.data, mito.data, spike.data, rep.data)
+rowData(sce)$featureType <- rep(c("endogenous", "mito", "ERCC", "repeat"),
+    c(nrow(endo.data), nrow(mito.data), nrow(spike.data), nrow(rep.data)))
 sce
 ```
 
 We now save all of the relevant components of `sce` to file for upload to `r Biocpkg("ExperimentHub")`.
 
 ```{r}
-saveRDS(counts(sce), file="zeisel-brain-counts.rds")
-saveRDS(rowData(sce), file="zeisel-brain-rowdata.rds")
-saveRDS(colData(sce), file="zeisel-brain-coldata.rds")
+path <- file.path("scRNAseq", "2.0.0", "zeisel-brain")
+dir.create(path, showWarnings=FALSE, recursive=TRUE)
+saveRDS(counts(sce), file=file.path(path, "counts.rds"))
+saveRDS(rowData(sce), file=file.path(path, "rowdata.rds"))
+saveRDS(colData(sce), file=file.path(path, "coldata.rds"))
 ```
 
 # Session information
