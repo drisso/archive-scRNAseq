@@ -31,7 +31,7 @@
 #' @importFrom SingleCellExperiment isSpike<-
 TasicBrainData <- function() {
     version <- "2.0.0"
-    sce <- .create_sce(file.path("tasic-brain", version))
+    sce <- .create_sce(file.path("tasic-brain", version), has.rowdata=FALSE)
     isSpike(sce, "ERCC") <- grep("^ERCC-[0-9]+$", rownames(sce))
     sce
 }
