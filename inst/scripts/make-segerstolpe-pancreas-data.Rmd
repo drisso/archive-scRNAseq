@@ -111,7 +111,7 @@ sce
 We now save all of the relevant components of `sce` to file for upload to `r Biocpkg("ExperimentHub")`.
 
 ```{r}
-path <- file.path("scRNAseq", "2.0.0", "segerstolpe-pancreas")
+path <- file.path("scRNAseq", "segerstolpe-pancreas", "2.0.0")
 dir.create(path, showWarnings=FALSE, recursive=TRUE)
 saveRDS(counts(sce), file=file.path(path, "counts.rds"))
 saveRDS(rowData(sce), file=file.path(path, "rowdata.rds"))
