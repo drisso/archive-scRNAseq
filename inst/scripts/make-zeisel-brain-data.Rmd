@@ -16,7 +16,7 @@ knitr::opts_chunk$set(error=FALSE, message=FALSE, warning=FALSE)
 
 # Overview
 
-The @szeisel2015brain study provides a single-cell RNA seq dataset involving the mouse brain. 
+The @zeisel2015brain study provides a single-cell RNA seq dataset involving the mouse brain. 
 This contains approximately 3000 cells of varying types such as oligodendrocytes, microglia and neurons.
 Individual cells were isolated using the Fluidigm C1 microfluidics system [@pollen2014lowcoverage] and library preparation was performed on each cell using a UMI-based protocol.
 After sequencing, expression was quantified by counting the number of UMIs mapped to each gene.
